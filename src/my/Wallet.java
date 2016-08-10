@@ -1,5 +1,9 @@
+/**Wallet.java
+ * @作者         吕浪
+ * @创建于 2016-8-8 上午10:37:51
+ * @版本    1.0
+ */
 package my;
-
 import javacard.framework.APDU;
 import javacard.framework.Applet;
 import javacard.framework.ISO7816;

@@ -1,6 +1,7 @@
 /**MyPin.java
  * @作者         吕浪
  * @创建于 2016-8-8 上午10:37:51
+ * @版本    1.0
  */
 package my;
 import javacard.framework.ISO7816;
@@ -15,7 +16,7 @@ public class MyPin
 	private byte pinSize;
 	private byte tryCounter; //所剩尝试机会,默认为3
 	private boolean[] checkPin; //false时表示尚未验证pin
-	private boolean[] blockPin;//可直接用tryCounter==0代替,这里为了明了添加变量
+	private boolean[] blockPin;//可直接用tryCounter==0代替,这里为了明了多添加个变量
 	
 	MyPin()
 	{
@@ -29,6 +30,14 @@ public class MyPin
 		//用如下函数开辟空间时会自动初始化为false
 		this.checkPin = JCSystem.makeTransientBooleanArray((short)1, JCSystem.CLEAR_ON_DESELECT);//deselect或reset自动复位
 		this.blockPin = JCSystem.makeTransientBooleanArray((short) 1, JCSystem.CLEAR_ON_DESELECT);//提供解锁方式：发送reset命令自动解锁
+		
+		/**解析：
+		 * 1.之所以要把标志位封装成1字节数组，是因为需要提供自动复位的方法：
+		 *   也即当发送reset的APDU时，程序需要将相应的标志位自动复位。
+		 * 2.JCSystem.makeTransientBooleanArray()函数就提供了上面的一个自动复位的功能,
+		 * 3.同时注意这个函数会给数组初始化为false
+		 * 4.reset命令即包含deselect命令操作。
+		 */
 	}
 	
 	public boolean pinVerify()
@@ -42,7 +51,7 @@ public class MyPin
 	 				  throws ArrayIndexOutOfBoundsException,
 	 						 NullPointerException
 	{
-		if(length != this.pinSize) //传入长度不等于当前长度
+		if(length != this.pinSize) //传入长度不等于要求的PIN长度
 		{
 			this.tryCounter--;
 			if(this.tryCounter == (byte)0)

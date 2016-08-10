@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="com.ibm.bluez.jcop.eclipse.containers.cardconfig/com.ibm.bluez.jcop.eclipse.cardconfigs.njcop"/>
+	<classpathentry kind="lib" path="C:/Program Files/Oracle/Java Card Development Kit 3.0.5u1/lib/api_classic.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

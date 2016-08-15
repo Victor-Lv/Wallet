@@ -28,7 +28,7 @@ public class MyPin
 		this.pinSize = (byte)8;
 		this.tryCounter = this.tryLimit;
 		//用如下函数开辟空间时会自动初始化为false
-		this.checkPin = JCSystem.makeTransientBooleanArray((short)1, JCSystem.CLEAR_ON_DESELECT);//deselect或reset自动复位
+		this.checkPin = JCSystem.makeTransientBooleanArray((short)1, JCSystem.CLEAR_ON_RESET);//deselect或reset自动复位
 		this.blockPin = JCSystem.makeTransientBooleanArray((short) 1, JCSystem.CLEAR_ON_DESELECT);//提供解锁方式：发送reset命令自动解锁
 		
 		/**解析：
